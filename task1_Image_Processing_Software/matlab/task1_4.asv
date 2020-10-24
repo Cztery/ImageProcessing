@@ -1,0 +1,29 @@
+%splitting and merging image channels
+
+clear; close all; imtool close all;
+
+image=imread("../img1.jpg");
+black = zeros(size(image(:,:,1)));
+
+imageR = cat(3, image(:,:,1), black, black);
+imageG = cat(3, black, image(:,:,2), black);
+imageB = cat(3, black, black, image(:,:,3));
+
+
+image(:,:,1) = 0;
+
+subplot(2,3,1), imshow(image), title('Zeroed red');
+subplot(2,3,2), imshow(imageR), title('Only red');
+subplot(2,3,3), imshow(imageG), title('Only green');
+subplot(2,3,4), imshow(imageB), title('Only blue');
+subplot(2,3,5),  imshow(image), title('Zeroed red');
+subplot(2,3,6), imshow(
+%montage([image,imageR,imageG,imageB]);
+
+figure(1)
+image1 = image;
+image1(1:(end/2), 1:(end/2), :) = image((end/2)+1:end,(end/2)+1:end, :);
+
+%imshowpair(image, image1, 'montage');
+
+imwrite(image1, "imgout1_4.jpg")

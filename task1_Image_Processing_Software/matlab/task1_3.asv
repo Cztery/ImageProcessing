@@ -1,0 +1,21 @@
+%obtaining image regions of interest, accessing image prperties
+clear; close all; imtool close all;
+
+framewidth = 40;
+framecolor = [20, 100, 100];
+
+image=imread("../img1.jpg");
+tmp = size(image);
+fprintf("image size: %d x %d, %d channels\n", tmp);
+tmp = numel(image);
+fprintf("number of pixels: %d\n", tmp);
+tmp = class(image);
+fprintf("image data-type: %s\n", tmp);
+
+figure(1)
+image1 = zeros(size(image);
+image1(1:(end/2), 1:(end/2), :) = image((end/2)+1:end,(end/2)+1:end, :);
+
+imshowpair(image, image1, 'montage');
+
+imwrite(image1, "imgout1_3.jpg")
